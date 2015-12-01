@@ -97,9 +97,9 @@ begin
     evklid := y1;
 end;
 
-function fast_exp(a: integer; z, n: integer): integer;
+function fast_exp(a: longword; z, n: longword): longword;
 var
-  x: integer;
+  x: longword;
 begin
   x := 1;
   while z <> 0 do
@@ -163,7 +163,7 @@ var
   q, p, n, fi, i, e, d, countText, quantityPrimeNumbers: integer;
   lsb, msb: byte;
   arr : array[1..100000] of byte;
-  c : array [1..100000] of word;
+  c : array [1..100000] of integer;
   arrayPrimeNumbers : arrayInt;
   File_text: file of byte;
 begin
@@ -195,7 +195,7 @@ begin
       c[i] := fast_exp(arr[i], e, n);
       WordToByte(c[i], lsb, msb);
       write(chr(msb), chr(lsb));
-      mmo1.Text := mmo1.Text + IntToStr(c[i]) + ' ';
+      //mmo1.Text := mmo1.Text + IntToStr(c[i]) + ' ';
     end;
     {writeln;
     writeln('Decryption:');

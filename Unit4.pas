@@ -94,9 +94,9 @@ begin
     evklid := y1;
 end;
 
-function fast_exp(a: integer; z, n: integer): integer;
+function fast_exp(a: longword; z, n: longword): longword;
 var
-  x: integer;
+  x: longword;
 begin
   x := 1;
   while z <> 0 do
@@ -156,9 +156,10 @@ end;
 
 procedure TForm4.btn2Click(Sender: TObject);
 var
-  q, p, n, fi, i, j, e, d, countText, quantityPrimeNumbers: integer;
-  arr : array[1..100000] of word;
-  c : array [1..100000] of integer;
+  q, p, n, fi, i, j, e, d, quantityPrimeNumbers: integer;
+  countText : int64;
+  arr : array of word;
+  c : array of integer;
   arrayPrimeNumbers : arrayInt;
   flag : boolean;
   temp : int64;
@@ -167,12 +168,13 @@ var
 begin
   if flagText then
   begin
-    countText := 0;
+    countText := -1;
     AssignFile(File_text, FileNameText);
     reset(File_text);
     while not Eof(File_text) do
     begin
       inc(countText);
+      SetLength(arr, countText+1);
       read(File_text, arr[countText]);
       arr[countText] := SwapW(arr[countText]);
     end;
@@ -203,11 +205,11 @@ begin
     OutputFileName := FileNameText + '.atackRSA';
     AssignFile(output, OutputFileName);
     Rewrite(output);
-    writeln('Decryption:');
-    for i:= 1 to countText do
+    //writeln('Decryption:');
+    for i:= 0 to countText-1 do
     begin
       write(chr(fast_exp(arr[i], d, n)));
-      mmo1.Text := mmo1.Text + IntToStr(fast_exp(arr[i], d, n)) + ' ';
+      //mmo1.Text := mmo1.Text + IntToStr(fast_exp(arr[i], d, n)) + ' ';
     end;
     CloseFile(output);
   end;

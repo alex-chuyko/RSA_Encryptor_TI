@@ -93,9 +93,9 @@ begin
     evklid := y1;
 end;
 
-function fast_exp(a: integer; z, n: integer): integer;
+function fast_exp(a: longword; z, n: longword): longword;
 var
-  x: integer;
+  x: longword;
 begin
   x := 1;
   while z <> 0 do
@@ -149,7 +149,7 @@ begin
     for i:= 1 to countText do
     begin
       write(chr(fast_exp(arr[i], d, n)));
-      mmo1.Text := mmo1.Text + IntToStr(fast_exp(arr[i], d, n) mod 256) + ' ';
+      //mmo1.Text := mmo1.Text + IntToStr(fast_exp(arr[i], d, n) mod 256) + ' ';
     end;
     CloseFile(output);
   end;
